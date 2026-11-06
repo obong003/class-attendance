@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Attendance</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header>
+    <div class="header-top">
+      <h1>📋 Class Attendance</h1>
+      <div class="total-badge" id="totalBadge">0 Students</div>
+    </div>
+    <nav class="tabs" id="mainTabs">
+      <button class="tab active" data-view="students">👥 Students</button>
+      <button class="tab"        data-view="sessions">📅 Sessions</button>
+    </nav>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════
+       VIEW: STUDENTS
+  ════════════════════════════════════════════════════════════ -->
+  <div id="view-students" class="view active">
+
+    <!-- Add Student -->
+    <section class="card form-card">
+      <h2 class="section-label">Add Student</h2>
+      <div class="form-grid">
+        <div class="field">
+          <label for="inputName">First Name</label>
+          <input type="text" id="inputName" placeholder="e.g. John" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="inputSurname">Surname</label>
+          <input type="text" id="inputSurname" placeholder="e.g. Doe" autocomplete="off" />
+        </div>
+        <div class="field field-full">
+          <label for="inputReg">Reg. No.</label>
+          <input type="text" id="inputReg" placeholder="e.g. STU-2024-001" autocomplete="off" />
+        </div>
+      </div>
+      <button class="btn btn-primary" id="btnAdd">＋ Add Student</button>
+      <p class="form-error" id="formError"></p>
+    </section>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search by name, surname or reg. no…" autocomplete="off" />
+      <button class="clear-search" id="btnClearSearch" title="Clear">✕</button>
+    </div>
+
+    <!-- Student List -->
+    <section class="card list-card">
+      <div id="studentList"></div>
+    </section>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       VIEW: SESSIONS
+  ════════════════════════════════════════════════════════════ -->
+  <div id="view-sessions" class="view">
+
+    <!-- New Session -->
+    <section class="card form-card">
+      <h2 class="section-label">New Session</h2>
+      <div class="form-grid">
+        <div class="field">
+          <label for="inputSessionDate">Date</label>
+          <input type="date" id="inputSessionDate" />
+        </div>
+        <div class="field">
+          <label for="inputSessionTitle">Title <span class="optional">(optional)</span></label>
+          <input type="text" id="inputSessionTitle" placeholder="e.g. Week 1, Quiz Day" autocomplete="off" />
+        </div>
+      </div>
+      <button class="btn btn-primary" id="btnAddSession">＋ Create Session</button>
+      <p class="form-error" id="sessionError"></p>
+    </section>
+
+    <!-- Session List -->
+    <section class="card list-card">
+      <div id="sessionList"></div>
+    </section>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       VIEW: MARK ATTENDANCE  (not a tab — opened from Sessions)
+  ════════════════════════════════════════════════════════════ -->
+  <div id="view-mark" class="view">
+
+    <!-- Mark Header -->
+    <div class="card mark-header">
+      <button class="btn-back" id="btnBackToSessions">← Back to Sessions</button>
+      <div class="mark-title-block">
+        <h2 id="markSessionTitle">Session</h2>
+        <p  id="markSessionDate"  class="muted-text"></p>
+      </div>
+
+      <!-- Live stats bar -->
+      <div id="markStatsBar"></div>
+
+      <!-- Legend -->
+      <div class="mark-legend">
+        <span class="legend-item present">✓ Present</span>
+        <span class="legend-item absent">✗ Absent</span>
+        <span class="legend-item late">⏱ Late</span>
+        <span class="legend-item unmarked">○ Unmarked</span>
+      </div>
+    </div>
+
+    <!-- Student Rows -->
+    <section class="card list-card">
+      <div id="markList"></div>
+    </section>
+
+  </div>
+
+</div><!-- /container -->
+
+<!-- ── Confirm Delete Modal ───────────────────────────────── -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-icon" id="modalIcon">🗑️</div>
+    <h3 id="modalTitle">Remove?</h3>
+    <p  id="modalMessage"></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost"  id="btnCancel">Cancel</button>
+      <button class="btn btn-danger" id="btnConfirmDelete">Yes, Remove</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
